@@ -6,7 +6,7 @@ const courseSchema = new mongoose.Schema({
     required: [true, 'A course must have a name.'],
     unique: true,
     trim: true,
-    minlength: [5, 'A course name must have more than or equal to 5 characters.'],
+    minlength: [2, 'A course name must have more than or equal to 5 characters.'],
     maxlength: [40, 'A course name must have less than or equal to 40 characters.']
   },
   description: {
@@ -50,15 +50,25 @@ const courseSchema = new mongoose.Schema({
   imageCover: {
     type: String
   },
-  images: [String],
+  images: {
+    type: [String]
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
     select: false
   },
+  startDates: {
+    type: [Date]
+  },
   updatedAt: {
     type: Date,
     default: Date.now(),
+    select: false
+  },
+  active: {
+    type: Boolean,
+    default: true,
     select: false
   }
 })
